@@ -8,20 +8,20 @@ function App() {
   const [people, setPeople] = useState([])
 
   const getPeople = () => {
-    axios.get('http://localhost:3000/people')
+    axios.get('https://people.fly.dev/people')
       .then((response) => setPeople(response.data), (err) => console.log(err))
       .catch((error) => console.log(error))
   }
 
   const handleCreate = (createdPerson) => {
-    axios.post('http://localhost:3000/people', createdPerson)
+    axios.post('https://people.fly.dev/people', createdPerson)
       .then((response) => {
         setPeople([...people, response.data])
       })
   }
 
   const handleEdit = (editedPerson) => {
-    axios.put('http://localhost:3000/people/' + editedPerson._id, editedPerson)
+    axios.put('https://people.fly.dev/people' + editedPerson._id, editedPerson)
       .then((response) => {
         let newPeople = people.map((person) => {
           return person._id !== editedPerson._id ? person : editedPerson
@@ -30,7 +30,7 @@ function App() {
       })
   }
   const handleDelete = (deletedPerson) => {
-    axios.delete('http://localhost:3000/people/' + deletedPerson._id)
+    axios.delete('https://people.fly.dev/people' + deletedPerson._id)
       .then((response) => {
         let newPeople = people.filter((person) => {
           return person._id !== deletedPerson._id
